@@ -207,4 +207,64 @@ class DbRepository(private val context: Context)  {
 
     }
 
+
+    //Update Employee
+    fun update_employee(mEmployeeModel: EmployeeModel,mselectlist : ArrayList<RolesModel>):  MutableLiveData<Long>  {
+        val id = MutableLiveData<Long>()
+        var rowCount: Long = 0
+        val appDbHelper = DbHelper.getInstance(context)
+
+        try {
+            appDbHelper.writableDatabase.use { db ->
+                val contentValues = ContentValues()
+                contentValues.put(COLUMN_EMP_FIRSTNAME, mEmployeeModel.firstname)
+                contentValues.put(COLUMN_EMP_LASTNAME, mEmployeeModel.lastnmae)
+                contentValues.put(COLUMN_EMP_EMAIL, mEmployeeModel.email)
+                contentValues.put(COLUMN_EMP_PASSWORD, mEmployeeModel.password)
+                contentValues.put(COLUMN_EMP_DESG, mEmployeeModel.desg)
+                contentValues.put(COLUMN_EMP_EMAIL, mEmployeeModel.emp_code)
+
+                rowCount = db.update(TABLE_EMPLOYEE, contentValues,"$COLUMN_ID = ? ",
+                    arrayOf(mEmployeeModel.id.toString())
+                ).toLong()
+
+            }
+            id.postValue(rowCount)
+            deleteRoles(mEmployeeModel.id!!)
+            if (mselectlist.size>0){
+                for(i in  0..(mselectlist.size-1)){
+
+                    insertemp_roles(mEmployeeModel.id!!,mselectlist.get(i).name.toString())
+                }
+
+            }
+        } catch (e: SQLiteException) {
+            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+        }
+
+        return id
+    }
+
+
+    //Delete Roles by employee id
+    fun deleteRoles(emp_id: Int): Int {
+        var deletedRowCount = -1
+        val appDbHelper = DbHelper.getInstance(context)
+
+        try {
+            appDbHelper.writableDatabase.use { db ->
+                deletedRowCount = db.delete(
+                    TABLE_ROLES,
+                    "$COLUMN_EMP_ID = ? ",
+                    arrayOf(emp_id.toString())
+                )
+            }
+        } catch (e: SQLiteException) {
+            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+        }
+
+        return deletedRowCount
+    }
+
+
 }
