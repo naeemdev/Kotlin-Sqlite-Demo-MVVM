@@ -37,5 +37,11 @@ class CommonViewModel (application: Application) : AndroidViewModel(application)
         return mRepository.update_employee(mEmployeeModel,mselectlist)
     }
 
+    //delete employee
+    fun deleteemployeeById(id:Int): MutableLiveData<Int> {
+        return mRepository.deleteemployeeById(id)
+    }
+
+
 
 }
