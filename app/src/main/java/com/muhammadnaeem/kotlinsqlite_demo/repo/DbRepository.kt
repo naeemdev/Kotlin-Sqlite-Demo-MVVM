@@ -3,6 +3,7 @@ package com.muhammadnaeem.kotlinsqlite_demo.repo
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteException
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.muhammadnaeem.kotlinsqlite_demo.dbhelper.DbHelper
@@ -222,7 +223,7 @@ class DbRepository(private val context: Context)  {
                 contentValues.put(COLUMN_EMP_EMAIL, mEmployeeModel.email)
                 contentValues.put(COLUMN_EMP_PASSWORD, mEmployeeModel.password)
                 contentValues.put(COLUMN_EMP_DESG, mEmployeeModel.desg)
-                contentValues.put(COLUMN_EMP_EMAIL, mEmployeeModel.emp_code)
+                contentValues.put(COLUMN_EMP_CODE, mEmployeeModel.emp_code)
 
                 rowCount = db.update(TABLE_EMPLOYEE, contentValues,"$COLUMN_ID = ? ",
                     arrayOf(mEmployeeModel.id.toString())
@@ -266,5 +267,27 @@ class DbRepository(private val context: Context)  {
         return deletedRowCount
     }
 
+
+
+    //delete employee by id
+    fun deleteemployeeById(id: Int): MutableLiveData<Int> {
+        val deletedRowCount = MutableLiveData<Int>()
+        val appDbHelper = DbHelper.getInstance(context)
+
+        try {
+
+            appDbHelper.writableDatabase.use { db ->
+
+                deletedRowCount.postValue(db.delete( TABLE_EMPLOYEE,"$COLUMN_ID = ? ", arrayOf(id.toString())))
+
+                //delete the employee roles
+                deleteRoles(emp_id =id )
+            }
+        } catch (e: SQLiteException) {
+            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+        }
+
+        return deletedRowCount
+    }
 
 }
