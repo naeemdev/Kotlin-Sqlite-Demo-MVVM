@@ -67,6 +67,7 @@ var index: Int=0;
             //Bind  Employee Detail to XML
             binding!!.item=respose
             if (respose!=null) {
+                str_empdes=respose.desg!!
                  index = resources.getStringArray(R.array.empdesg).indexOf(respose.desg)
                 binding!!.spDesg.setSelection(index)
             }
@@ -144,10 +145,18 @@ var index: Int=0;
                 mEmployeeModel.desg=str_empdes
                 mEmployeeModel.emp_code=employeecode
                 if (arguments?.getInt("id")==0){
+                    //insert Employee detail adn roles
                 viewModel!!.insertemployee(mEmployeeModel,mselectlist)!!.observe(requireActivity(), Observer { respinse->
                     showtoast("Insert Succfully")
                     requireActivity().onBackPressed()
                 })
+                }else{
+                    //update Employee Detail and roles
+                    mEmployeeModel.id=arguments?.getInt("id")
+                    viewModel!!.update_employee(mEmployeeModel,mselectlist)!!.observe(requireActivity(), Observer { respinse->
+                        showtoast("Update Succfully")
+                        requireActivity().onBackPressed()
+                    })
                 }
             }else{
                 showtoast(getString(R.string.error_selectrole))

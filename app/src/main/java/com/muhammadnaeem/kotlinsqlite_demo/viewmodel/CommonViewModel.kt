@@ -31,4 +31,11 @@ class CommonViewModel (application: Application) : AndroidViewModel(application)
         return mRepository.insertemployee(mEmployeeModel,mselectlist)
     }
 
+
+    //Update employee  detail and Roles
+    fun update_employee(mEmployeeModel: EmployeeModel, mselectlist : ArrayList<RolesModel>): MutableLiveData<Long>? {
+        return mRepository.update_employee(mEmployeeModel,mselectlist)
+    }
+
+
 }
