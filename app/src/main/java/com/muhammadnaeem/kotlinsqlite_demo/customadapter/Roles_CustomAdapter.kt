@@ -17,7 +17,7 @@ class Roles_CustomAdapter ():
 
     private var mRolesllist: Array<RolesModel>? = null
 
-    var checkedTeachers = ArrayList<RolesModel>()
+    var checkedroles = ArrayList<RolesModel>()
     var id:Int=0
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RolesViewHolder {
@@ -37,10 +37,10 @@ class Roles_CustomAdapter ():
 
         val currentitem = mRolesllist!![i]
 
-        if (checkedTeachers.size>0){
-            for(i in  0..(checkedTeachers.size - 1))
+        if (checkedroles.size>0){
+            for(i in  0..(checkedroles.size - 1))
             {
-                if (checkedTeachers.get(i).name==currentitem.name){
+                if (checkedroles.get(i).name==currentitem.name){
                     mRolesViewHolder.mItemIconBinding.checkbox.isChecked=true
 
                 }
@@ -54,10 +54,10 @@ class Roles_CustomAdapter ():
             if ( mRolesViewHolder.mItemIconBinding.checkbox.isChecked){
                 mRolesViewHolder.mItemIconBinding.checkbox.isChecked=true
 
-                checkedTeachers.add(mRolesModel)
+                checkedroles.add(mRolesModel)
             }else{
                 mRolesViewHolder.mItemIconBinding.checkbox.isChecked=false
-                checkedTeachers.remove(mRolesModel)
+                checkedroles.remove(mRolesModel)
             }
         })
 
@@ -76,7 +76,7 @@ class Roles_CustomAdapter ():
         this.mRolesllist = local_list
         //  mSelectedRolesModellist=local_selectedlist
         //  checkedTeachers.clear()
-        checkedTeachers=local_selectedlist
+        checkedroles=local_selectedlist
         notifyDataSetChanged()
     }
 

@@ -25,7 +25,7 @@ import java.util.ArrayList
  */
 class EmployeeFormFragment : Fragment() {
 
-    var mselectlist = java.util.ArrayList<RolesModel>()
+    var mselectlist = ArrayList<RolesModel>()
     private val roles: Array<RolesModel>
         get() =
             arrayOf(
@@ -79,6 +79,10 @@ class EmployeeFormFragment : Fragment() {
 
         }else{
             binding!!.btnUpdate.setText(getString(R.string.update))
+            viewModel!!.getAll_employeeroles(arguments?.getInt("id")!!.toInt())!!.observe(requireActivity(), Observer
+            { response->
+                mselectlist= response as ArrayList<RolesModel>
+            })
 
         }
 
@@ -126,9 +130,9 @@ class EmployeeFormFragment : Fragment() {
         })
         binding_dilaog.btnOk.setOnClickListener(View.OnClickListener {
 
-            if ( mRoles_CustomAdapter.checkedTeachers.size > 0){
+            if ( mRoles_CustomAdapter.checkedroles.size > 0){
 
-                mselectlist= mRoles_CustomAdapter.checkedTeachers
+                mselectlist= mRoles_CustomAdapter.checkedroles
             }
 
             dialog.dismiss()
