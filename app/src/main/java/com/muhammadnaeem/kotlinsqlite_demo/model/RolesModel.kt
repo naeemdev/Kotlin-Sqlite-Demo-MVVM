@@ -1,4 +1,6 @@
 package com.muhammadnaeem.kotlinsqlite_demo.model
 
-class RolesModel {
+data class RolesModel(var name:String?=null
+){
+    var isSelected: Boolean = false
 }
