@@ -18,6 +18,7 @@
     <string name="update">Update</string>
     <string name="cancel">Cancel</string>
     <string name="Insert">Insert</string>
+    <string name="ok">Ok</string>
     <string-array name="empdesg">
         <item>--None Selected--</item>
         <item>Accounting</item>
