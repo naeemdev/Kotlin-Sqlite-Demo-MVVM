@@ -65,4 +65,48 @@ class DbRepository(private val context: Context)  {
     }
 
 
+    //get Single Employee Detail
+    fun getemployeeById(id: Int): MutableLiveData<EmployeeModel>  {
+
+        val appDbHelper = DbHelper.getInstance(context)
+        val mEmployeeModel_live = MutableLiveData<EmployeeModel>()
+
+        try {
+            appDbHelper.readableDatabase.use { db ->
+                db.query(
+                    TABLE_EMPLOYEE, null,
+                    "$COLUMN_ID = ? ", arrayOf(id.toString()), null, null, null
+                ).use { cursor ->
+                    if (cursor.moveToFirst()) {
+                        var mEmployeeModel=EmployeeModel()
+                        mEmployeeModel.id= cursor.getInt(cursor.getColumnIndex(COLUMN_ID))
+                        mEmployeeModel.firstname= cursor.getString(cursor.getColumnIndex(
+                            COLUMN_EMP_FIRSTNAME
+                        ))
+                        mEmployeeModel.lastnmae= cursor.getString(cursor.getColumnIndex(
+                            COLUMN_EMP_LASTNAME
+                        ))
+                        mEmployeeModel.email= cursor.getString(cursor.getColumnIndex(
+                            COLUMN_EMP_EMAIL
+                        ))
+                        mEmployeeModel.desg= cursor.getString(cursor.getColumnIndex(
+                            COLUMN_EMP_DESG
+                        ))
+                        mEmployeeModel.password= cursor.getString(cursor.getColumnIndex(
+                            COLUMN_EMP_PASSWORD
+                        ))
+                        mEmployeeModel.emp_code= cursor.getString(cursor.getColumnIndex(
+                            COLUMN_EMP_CODE
+                        ))
+                        mEmployeeModel_live.postValue(mEmployeeModel)
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show()
+        }
+
+        return mEmployeeModel_live
+    }
+
 }
