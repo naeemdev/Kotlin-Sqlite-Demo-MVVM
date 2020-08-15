@@ -51,7 +51,7 @@ class EmployeeListFragment : Fragment(), ItemClickListner {
         })
 
         viewModel = ViewModelProvider(this).get(CommonViewModel::class.java)
-        mEmployee_CustomAdapter=Employee_CustomAdapter()
+        mEmployee_CustomAdapter=Employee_CustomAdapter(this)
 
         // get Employee list and Set Adpater.
         viewModel!!.getAll_employee()!!.observe(requireActivity(), Observer { response->

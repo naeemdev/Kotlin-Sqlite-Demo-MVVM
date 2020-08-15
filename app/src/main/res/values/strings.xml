@@ -19,6 +19,17 @@
     <string name="cancel">Cancel</string>
     <string name="Insert">Insert</string>
     <string name="ok">Ok</string>
+    <string name="error_firstname3">First name must be greater than 3</string>
+    <string name="error_enterlastname">Enter Last name</string>
+    <string name="error_last3">Last name  must be greater than 3</string>
+    <string name="error_email">Enter your email</string>
+    <string name="error_emailvalid">Enter Valid Email Address</string>
+    <string name="error_pwd">Enter password</string>
+    <string name="error_pwd3">password must be greater than 3</string>
+    <string name="error_confimpwd">Confirm password not matched</string>
+    <string name="error_selectdesg">select employee designation</string>
+    <string name="error_selectrole">Select role</string>
+
     <string-array name="empdesg">
         <item>--None Selected--</item>
         <item>Accounting</item>

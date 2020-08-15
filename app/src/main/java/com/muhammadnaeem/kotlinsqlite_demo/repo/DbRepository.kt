@@ -167,7 +167,7 @@ class DbRepository(private val context: Context)  {
                 contentValues.put(COLUMN_EMP_EMAIL, mEmployeeModel.email)
                 contentValues.put(COLUMN_EMP_PASSWORD, mEmployeeModel.password)
                 contentValues.put(COLUMN_EMP_DESG, mEmployeeModel.desg)
-                contentValues.put(COLUMN_EMP_EMAIL, mEmployeeModel.emp_code)
+                contentValues.put(COLUMN_EMP_CODE, mEmployeeModel.emp_code)
                 var id_inser= db.insertOrThrow(TABLE_EMPLOYEE, null, contentValues)
                 id.postValue(id_inser)
                 if (mselectlist.size>0){

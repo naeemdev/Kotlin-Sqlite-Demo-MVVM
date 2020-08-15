@@ -13,7 +13,7 @@ import com.muhammadnaeem.kotlinsqlite_demo.interfaceListner.ItemClickListner
 import com.muhammadnaeem.kotlinsqlite_demo.model.EmployeeModel
 
 
-class Employee_CustomAdapter ( var clickListener: ItemClickListner? = null):
+class Employee_CustomAdapter ( var clickListener: ItemClickListner):
     RecyclerView.Adapter<Employee_CustomAdapter.EmployeeViewHolder>() {
 
     private var mEmployeeModellist: ArrayList<EmployeeModel>? = null
@@ -37,7 +37,8 @@ class Employee_CustomAdapter ( var clickListener: ItemClickListner? = null):
 
         mEmployeeViewHolder.mItemIconBinding.item=currentitem
         mEmployeeViewHolder.mItemIconBinding.cvRoot.setOnClickListener(View.OnClickListener {
-            clickListener!!.onClick(currentitem.id,mEmployeeViewHolder.adapterPosition)
+            clickListener!!.onClick(mEmployeeModellist!![mEmployeeViewHolder.adapterPosition].id,
+                mEmployeeViewHolder.adapterPosition)
         })
     }
 
