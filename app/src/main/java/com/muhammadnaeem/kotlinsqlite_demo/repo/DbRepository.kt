@@ -1,6 +1,8 @@
 package com.muhammadnaeem.kotlinsqlite_demo.repo
 
+import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteException
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.muhammadnaeem.kotlinsqlite_demo.dbhelper.DbHelper
@@ -146,6 +148,63 @@ class DbRepository(private val context: Context)  {
         }
 
         return employeerolelist
+    }
+
+
+
+    //insert employee
+    fun insertemployee(mEmployeeModel: EmployeeModel,mselectlist : ArrayList<RolesModel>):  MutableLiveData<Long>  {
+        val id = MutableLiveData<Long>()
+//        var id: Long = -1
+        val appDbHelper = DbHelper.getInstance(context)
+
+
+        try {
+            appDbHelper.writableDatabase.use { db ->
+                val contentValues = ContentValues()
+                contentValues.put(COLUMN_EMP_FIRSTNAME, mEmployeeModel.firstname)
+                contentValues.put(COLUMN_EMP_LASTNAME, mEmployeeModel.lastnmae)
+                contentValues.put(COLUMN_EMP_EMAIL, mEmployeeModel.email)
+                contentValues.put(COLUMN_EMP_PASSWORD, mEmployeeModel.password)
+                contentValues.put(COLUMN_EMP_DESG, mEmployeeModel.desg)
+                contentValues.put(COLUMN_EMP_EMAIL, mEmployeeModel.emp_code)
+                var id_inser= db.insertOrThrow(TABLE_EMPLOYEE, null, contentValues)
+                id.postValue(id_inser)
+                if (mselectlist.size>0){
+                    for(i in  0..(mselectlist.size-1)){
+
+                        insertemp_roles(id_inser.toInt(),mselectlist.get(i).name.toString())
+                    }
+
+                }
+
+            }
+        } catch (e: SQLiteException) {
+            Toast.makeText(context, "Operation failed: " + e.message, Toast.LENGTH_LONG).show()
+        }
+
+        return id
+    }
+
+    //insert roles
+    fun insertemp_roles(emp_id:Int, name: String) {
+
+        val appDbHelper = DbHelper.getInstance(context)
+
+
+        try {
+            appDbHelper.writableDatabase.use { db ->
+                val contentValues = ContentValues()
+                contentValues.put(COLUMN_EMP_ID, emp_id)
+                contentValues.put(COLUMN_ROLES_NAME, name)
+                db.insertOrThrow(TABLE_ROLES, null, contentValues)
+
+            }
+        } catch (e: SQLiteException) {
+            Toast.makeText(context, "Operation failed: " + e.message, Toast.LENGTH_LONG).show()
+        }
+
+
     }
 
 }
