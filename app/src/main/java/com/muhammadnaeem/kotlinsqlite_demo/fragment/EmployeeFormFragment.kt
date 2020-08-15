@@ -12,6 +12,7 @@ import com.muhammadnaeem.kotlinsqlite_demo.R
 import com.muhammadnaeem.kotlinsqlite_demo.databinding.FragmentEmployformBinding
 import com.muhammadnaeem.kotlinsqlite_demo.model.RolesModel
 import com.muhammadnaeem.kotlinsqlite_demo.viewmodel.CommonViewModel
+import java.util.ArrayList
 
 
 /**
@@ -66,6 +67,16 @@ class EmployeeFormFragment : Fragment() {
             binding!!.item=respose
 
         })
+
+        if (arguments?.getInt("id")==0){
+            binding!!.btnUpdate.setText(getString(R.string.Insert))
+
+
+        }else{
+            binding!!.btnUpdate.setText(getString(R.string.update))
+ 
+        }
+
 
     }
 }
