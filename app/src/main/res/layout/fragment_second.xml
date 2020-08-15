@@ -7,23 +7,194 @@
     android:layout_height="match_parent"
     tools:context=".SecondFragment">
 
-    <TextView
-        android:id="@+id/textview_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
 
-    <Button
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/edt_firstname"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:textColorHint="@color/black"
+                    android:imeOptions="actionNext"
+
+                    android:inputType="textCapWords"
+                    android:hint="@string/firstname"
+                    android:autofillHints="@string/firstname" />
+
+
+                <EditText
+                    android:id="@+id/edt_lastname"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:textColorHint="@color/black"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:hint="@string/lastname"
+                    android:autofillHints="@string/lastname" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/edt_email"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:textColorHint="@color/black"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/email"
+                    android:autofillHints="@string/email" />
+
+
+                <EditText
+                    android:id="@+id/edt_employcode"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/_5dp"
+
+                    android:textColorHint="@color/black"
+                    android:imeOptions="actionNext"
+                    android:editable="false"
+                    android:inputType="textCapWords"
+                    android:focusable="false"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/edt_password"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:textColorHint="@color/black"
+                    android:imeOptions="actionNext"
+
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:autofillHints="@string/password" />
+
+
+                <EditText
+                    android:id="@+id/edt_confirmpassword"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:textColorHint="@color/black"
+                    android:imeOptions="actionNext"
+
+                    android:inputType="textPassword"
+                    android:hint="@string/confirmpassword"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:orientation="horizontal"
+                >
+                <Spinner
+                    android:id="@+id/sp_desg"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:entries="@array/empdesg"
+                    android:layout_height="wrap_content"
+                    />
+                <Button
+                    android:id="@+id/btn_roles"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Roles"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:entries="@array/empdesg"
+                    android:text="@string/cancel"
+                    android:background="@color/blue"
+                    android:textColor="@color/white"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    />
+                <Button
+                    android:id="@+id/btn_update"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/green"
+                    android:textColor="@color/white"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
