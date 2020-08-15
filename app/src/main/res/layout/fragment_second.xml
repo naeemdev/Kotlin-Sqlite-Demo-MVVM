@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="item"
+            type="com.muhammadnaeem.kotlinsqlite_demo.model.EmployeeModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -35,7 +40,7 @@
                     android:singleLine="true"
                     android:textColorHint="@color/black"
                     android:imeOptions="actionNext"
-
+                    android:text='@{item.firstname ?? ""}'
                     android:inputType="textCapWords"
                     android:hint="@string/firstname"
                     android:autofillHints="@string/firstname" />
@@ -49,6 +54,7 @@
                     android:textSize="@dimen/_14sp"
                     android:textColor="@color/black"
                     android:singleLine="true"
+                    android:text='@{item.lastnmae ?? ""}'
                     android:layout_marginLeft="@dimen/_5dp"
                     android:textColorHint="@color/black"
                     android:imeOptions="actionNext"
@@ -71,6 +77,7 @@
                     android:textSize="@dimen/_14sp"
                     android:textColor="@color/black"
                     android:singleLine="true"
+                    android:text='@{item.email ?? ""}'
                     android:textColorHint="@color/black"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
@@ -87,7 +94,7 @@
                     android:textColor="@color/black"
                     android:singleLine="true"
                     android:layout_marginLeft="@dimen/_5dp"
-
+                    android:text='@{item.emp_code ?? ""}'
                     android:textColorHint="@color/black"
                     android:imeOptions="actionNext"
                     android:editable="false"
@@ -114,7 +121,7 @@
                     android:singleLine="true"
                     android:textColorHint="@color/black"
                     android:imeOptions="actionNext"
-
+                    android:text='@{item.password ?? ""}'
                     android:inputType="textPassword"
                     android:hint="@string/password"
                     android:autofillHints="@string/password" />
@@ -131,7 +138,7 @@
                     android:layout_marginLeft="@dimen/_5dp"
                     android:textColorHint="@color/black"
                     android:imeOptions="actionNext"
-
+                    android:text='@{item.password ?? ""}'
                     android:inputType="textPassword"
                     android:hint="@string/confirmpassword"
                     />
