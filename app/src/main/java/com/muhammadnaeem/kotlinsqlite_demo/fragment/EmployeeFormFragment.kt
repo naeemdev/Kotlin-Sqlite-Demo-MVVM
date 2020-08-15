@@ -87,5 +87,11 @@ class EmployeeFormFragment : Fragment() {
             }
         }
 
+
+        ///Cancel Button Click
+        binding!!.btnCancel.setOnClickListener(View.OnClickListener {
+            requireActivity().onBackPressed()
+        })
+
     }
 }
