@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -74,9 +76,16 @@ class EmployeeFormFragment : Fragment() {
 
         }else{
             binding!!.btnUpdate.setText(getString(R.string.update))
- 
+
         }
 
+        binding!!.spDesg.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                str_empdes= parent?.getItemAtPosition(p2).toString()
+              }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
 
     }
 }
