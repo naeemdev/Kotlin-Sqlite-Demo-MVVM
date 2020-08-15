@@ -1,5 +1,6 @@
 package com.muhammadnaeem.kotlinsqlite_demo.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +12,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.muhammadnaeem.kotlinsqlite_demo.R
+import com.muhammadnaeem.kotlinsqlite_demo.customadapter.Roles_CustomAdapter
 import com.muhammadnaeem.kotlinsqlite_demo.databinding.FragmentEmployformBinding
+import com.muhammadnaeem.kotlinsqlite_demo.databinding.RolesDialogBinding
 import com.muhammadnaeem.kotlinsqlite_demo.model.RolesModel
 import com.muhammadnaeem.kotlinsqlite_demo.viewmodel.CommonViewModel
 import java.util.ArrayList
@@ -93,5 +96,45 @@ class EmployeeFormFragment : Fragment() {
             requireActivity().onBackPressed()
         })
 
+        ///roles dialog click
+        binding!!.btnRoles.setOnClickListener(View.OnClickListener {
+            rolesdialog()
+        })
+
     }
+
+
+
+    fun rolesdialog() {
+
+        val binding_dilaog: RolesDialogBinding=   DataBindingUtil.inflate(    LayoutInflater.from(activity),
+            R.layout.roles_dialog,
+            null, false)
+
+        var mRoles_CustomAdapter= Roles_CustomAdapter()
+
+        var dialog = Dialog(requireActivity())
+        dialog.setContentView(binding_dilaog.root)
+        dialog.setCancelable(false)
+        mRoles_CustomAdapter.setitemList(roles,mselectlist!!)
+        dialog.show()
+        binding_dilaog.rolesRecyclerView.apply {
+            adapter=mRoles_CustomAdapter
+        }
+        binding_dilaog.btnCancel.setOnClickListener(View.OnClickListener {
+            dialog.dismiss()
+        })
+        binding_dilaog.btnOk.setOnClickListener(View.OnClickListener {
+
+            if ( mRoles_CustomAdapter.checkedTeachers.size > 0){
+
+                mselectlist= mRoles_CustomAdapter.checkedTeachers
+            }
+
+            dialog.dismiss()
+        })
+
+
+    }
+
 }
