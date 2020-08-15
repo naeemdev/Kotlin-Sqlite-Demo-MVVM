@@ -91,11 +91,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_14sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:singleLine="true"
                     android:layout_marginLeft="@dimen/_5dp"
                     android:text='@{item.emp_code ?? ""}'
-                    android:textColorHint="@color/black"
+
                     android:imeOptions="actionNext"
                     android:editable="false"
                     android:inputType="textCapWords"
