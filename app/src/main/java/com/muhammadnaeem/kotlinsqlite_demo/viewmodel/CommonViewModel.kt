@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.muhammadnaeem.kotlinsqlite_demo.model.EmployeeModel
+import com.muhammadnaeem.kotlinsqlite_demo.model.RolesModel
 import com.muhammadnaeem.kotlinsqlite_demo.repo.DbRepository
 
 class CommonViewModel (application: Application) : AndroidViewModel(application) {
@@ -19,6 +20,10 @@ class CommonViewModel (application: Application) : AndroidViewModel(application)
         return mRepository.getemployeeById(id)
     }
 
+    //get employee Roles List
+    fun getAll_employeeroles(id:Int): MutableLiveData<List<RolesModel>>? {
+        return mRepository.getAll_employeeroles(id)
+    }
 
 
 }
