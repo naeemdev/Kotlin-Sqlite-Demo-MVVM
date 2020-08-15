@@ -14,5 +14,11 @@ class CommonViewModel (application: Application) : AndroidViewModel(application)
         return mRepository.getAll_employee()
     }
 
+    // get Employee Detail
+    fun getemployeeById(id:Int): MutableLiveData<EmployeeModel>? {
+        return mRepository.getemployeeById(id)
+    }
+
+
 
 }
