@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.muhammadnaeem.kotlinsqlite_demo.model.EmployeeModel
 import com.muhammadnaeem.kotlinsqlite_demo.model.RolesModel
 import com.muhammadnaeem.kotlinsqlite_demo.repo.DbRepository
+import java.util.ArrayList
 
 class CommonViewModel (application: Application) : AndroidViewModel(application) {
     private val mRepository: DbRepository = DbRepository(application.applicationContext)
@@ -25,5 +26,9 @@ class CommonViewModel (application: Application) : AndroidViewModel(application)
         return mRepository.getAll_employeeroles(id)
     }
 
+    //insert employee and Roles
+    fun insertemployee(mEmployeeModel: EmployeeModel, mselectlist : ArrayList<RolesModel>): MutableLiveData<Long>? {
+        return mRepository.insertemployee(mEmployeeModel,mselectlist)
+    }
 
 }
